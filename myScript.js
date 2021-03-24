@@ -1,15 +1,30 @@
 var total_price = 0;
 var check_one_appetizer = 0;
-var last_total_price = 0;
 var check_one_wine = 0;
 var w_a = 0, w_b = 0, w_c = 0;
 var check_one_meal = 0;
 var m_a = 0, m_b = 0, m_c = 0;
 var soup_record = "";
-var s_a = 0, s_b = 0, s_c = 0;
+var drink_record = "";
 
+function reset(){
+    document.getElementById("appetizer").innerHTML = "";
+    check_one_appetizer = 0;
+    document.getElementById("wine").innerHTML = "";
+    check_one_wine = 0;
+    w_a = 0, w_b = 0, w_c = 0;
+    document.getElementById("meal").innerHTML = "";
+    check_one_meal = 0;
+    m_a = 0, m_b = 0, m_c = 0;
+    document.getElementById("soup").innerHTML = "";
+    soup_record = "";
+    document.getElementById("drink").innerHTML = "";
+    drink_record = "";
+    total_price = 0;
+    renew_total_price();
+}
 
-document.getElementById("total_order_price").innerHTML = "Total $ " + total_price;
+document.getElementById("total_order_price").innerHTML = "Total $" + total_price;
 
 function renew_total_price(){
     document.getElementById("total_order_price").innerHTML = "Total $" + total_price;
@@ -20,7 +35,6 @@ document.getElementById("add_appetizer_a").addEventListener("click", appetizer_a
 function appetizer_a(){
     document.getElementById("appetizer").innerHTML = "優格鮮蝦菜蔬 $120";
     if( check_one_appetizer == 0 ){
-        last_total_price = total_price;
         total_price = total_price + 120;
         check_one_appetizer = 1;
     }
@@ -229,4 +243,28 @@ function soup( soup_num ){
     renew_total_price()
 }
 
+
+document.getElementById("add_drink_a").addEventListener("click",function(){drink(0);});
+document.getElementById("add_drink_b").addEventListener("click",function(){drink(1);});
+document.getElementById("add_drink_c").addEventListener("click",function(){drink(2);});
+
+function drink( drink_num ){
+
+    if( drink_num == 0 ){
+        drink_record = drink_record + '濃情可可 $150' + "<br>";
+        document.getElementById("drink").innerHTML = drink_record;
+        total_price = total_price + 150;
+    }
+    else if( drink_num == 1 ){
+        drink_record = drink_record + '義玫瑰水果茶 $115' + "<br>";
+        document.getElementById("drink").innerHTML = drink_record;
+        total_price = total_price + 115;
+    }
+    else if( drink_num == 2 ){
+        drink_record = drink_record + '布蕾香紅 $80' + "<br>";
+        document.getElementById("drink").innerHTML = drink_record;
+        total_price = total_price + 80;
+    }
+    renew_total_price()
+}
 
